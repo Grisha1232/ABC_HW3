@@ -32,13 +32,13 @@
 
 ## Отчет на 4 балла:
 1. *Приведено решение на С*
-> [main.c]()  
-> [th.c]()  
+> [main.c](https://github.com/Grisha1232/ABC_HW3/blob/caae295565936eb2c74743d31f7d2a08ce08a1e3/C%20code/main.c)  
+> [th.c](https://github.com/Grisha1232/ABC_HW3/blob/caae295565936eb2c74743d31f7d2a08ce08a1e3/C%20code/th.c)  
 > Правила пользование написаны выше
 
 2. *Приведено решение на Assembler* (Не модифицированый без оптимизирующих и отладочных опций)
-> [main.s]()  
-> [th.s]()  
+> [main.s](https://github.com/Grisha1232/ABC_HW3/blob/c8c44951bb988a789dc699e4e7a7dfb180fb0f93/Assembler%20non%20mod/main.s)  
+> [th.s](https://github.com/Grisha1232/ABC_HW3/blob/c8c44951bb988a789dc699e4e7a7dfb180fb0f93/Assembler%20non%20mod/th.s)  
 3. *Приведено решение на Assembler*
 > [main.s]()  
 > [th.s]()  
