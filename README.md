@@ -29,3 +29,5 @@
 ```
 ./program.exe measuring
 ```
+
+## Отчет на 4 балла:
