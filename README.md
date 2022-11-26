@@ -32,7 +32,7 @@
 
 ## Отчет на 4 балла:
 1. *Приведено решение на С*
-> [main.c](https://github.com/Grisha1232/ABC_HW3/blob/caae295565936eb2c74743d31f7d2a08ce08a1e3/C%20code/main.c)  
+> [main.c](https://github.com/Grisha1232/ABC_HW3/blob/86cfc08b685fa49add60ebd1975f230576fa64a6/C%20code/main.c)  
 > [th.c](https://github.com/Grisha1232/ABC_HW3/blob/caae295565936eb2c74743d31f7d2a08ce08a1e3/C%20code/th.c)  
 > Правила пользование написаны выше
 
