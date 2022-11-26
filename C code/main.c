@@ -3,6 +3,7 @@
 #include <time.h>
 #include <math.h>
 #include <string.h>
+#include <errno.h>
 
 
 long double realTh(double x) {
@@ -45,7 +46,7 @@ int main(int argc, char *argv[]) {
             time_t t_end = clock();
             printf("result for th(x) = %Lf\n", result);
             printf("precision: %Lf\n\n", checkPrecision(realTh(x), result));
-            printf("\nThe task is done 2000000 times in %f ms\n", (difftime(t_end, t_start)) / 1000);
+            printf("\nThe task is done 2000000 times in %f sec\n", (difftime(t_end, t_start)) / 1000000);
             return 0;
         }
         double pi = 3.1415926535;
