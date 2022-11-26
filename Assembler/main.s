@@ -422,7 +422,7 @@ main:
 	mov	QWORD PTR -48[rbp], rax		# input, tmp190
 						# ./main.c:75:         if ((input = fopen(argv[1], "r"))!= NULL) {
 	cmp	QWORD PTR -48[rbp], 0		# input,
-	je	.L26				#,
+	jne	.L26				#,
 						# ./main.c:76:             fclose(input);
 	mov	rax, QWORD PTR -48[rbp]		# tmp191, input
 	mov	rdi, rax			#, tmp191
@@ -447,7 +447,7 @@ main:
 	mov	QWORD PTR -56[rbp], rax		# output, tmp195
 						# ./main.c:81:         if ((output = fopen(argv[2], "w")) != NULL) {
 	cmp	QWORD PTR -56[rbp], 0		# output,
-	je	.L28				#,
+	jne	.L28				#,
 						# ./main.c:82:             fclose(output);
 	mov	rax, QWORD PTR -56[rbp]		# tmp196, output
 	mov	rdi, rax			#, tmp196
