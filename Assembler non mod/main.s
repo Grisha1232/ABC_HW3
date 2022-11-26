@@ -11,10 +11,10 @@ realTh:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	subq	$16, %rsp
-	movsd	%xmm0, -8(%rbp)
+	movsd	%xmm0, -8(%rbp)		# double x
 	movq	-8(%rbp), %rax
-	movq	%rax, %xmm0
-	call	tanh@PLT
+	movq	%rax, %xmm0		# moves for transport x
+	call	tanh@PLT		# call tanh(x)
 	movsd	%xmm0, -16(%rbp)
 	fldl	-16(%rbp)
 	leave
@@ -36,7 +36,7 @@ checkPrecision:
 	fldt	32(%rbp)
 	fldt	.LC1(%rip)
 	fmulp	%st, %st(1)
-	fldt	16(%rbp)
+	fldt	16(%rbp)		# -16 = long double result
 	fdivrp	%st, %st(1)
 	fldt	.LC1(%rip)
 	fsubp	%st, %st(1)
@@ -106,9 +106,9 @@ main:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	subq	$208, %rsp
-	movl	%edi, -196(%rbp)
-	movq	%rsi, -208(%rbp)
-	cmpl	$1, -196(%rbp)
+	movl	%edi, -196(%rbp)		# argc
+	movq	%rsi, -208(%rbp)		# argv
+	cmpl	$1, -196(%rbp)			
 	jne	.L11
 	movl	$0, %edi
 	call	time@PLT
@@ -118,13 +118,13 @@ main:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
-	leaq	-164(%rbp), %rax
+	leaq	-164(%rbp), %rax		# -164 = int n
 	movq	%rax, %rsi
 	leaq	.LC4(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	__isoc99_scanf@PLT
-	movl	$0, -4(%rbp)
+	movl	$0, -4(%rbp)			# int i = 0
 	jmp	.L12
 .L13:
 	call	rand@PLT
@@ -135,7 +135,7 @@ main:
 	subl	%edx, %eax
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	%eax, %xmm0
-	movsd	%xmm0, -144(%rbp)
+	movsd	%xmm0, -144(%rbp)		# -144 = double x
 	call	rand@PLT
 	movslq	%eax, %rdx
 	imulq	$1541281413, %rdx, %rdx
@@ -163,7 +163,7 @@ main:
 	movq	-144(%rbp), %rax
 	movq	%rax, %xmm0
 	call	th@PLT
-	fstpt	-160(%rbp)
+	fstpt	-160(%rbp)		# -160 = long double result
 	pushq	-152(%rbp)
 	pushq	-160(%rbp)
 	leaq	.LC7(%rip), %rax
@@ -216,7 +216,7 @@ main:
 	testl	%eax, %eax
 	jne	.L16
 	movsd	.LC11(%rip), %xmm0
-	movsd	%xmm0, -120(%rbp)
+	movsd	%xmm0, -120(%rbp)		# -120 = double x = 1.39
 	movq	-120(%rbp), %rax
 	movq	%rax, %xmm0
 	leaq	.LC12(%rip), %rax
@@ -224,20 +224,20 @@ main:
 	movl	$1, %eax
 	call	printf@PLT
 	call	clock@PLT
-	movq	%rax, -128(%rbp)
-	movl	$0, -36(%rbp)
+	movq	%rax, -128(%rbp)		# start
+	movl	$0, -36(%rbp)			# int i = 0
 	jmp	.L17
 .L18:
 	movq	-120(%rbp), %rax
 	movq	%rax, %xmm0
 	call	th@PLT
-	fstpt	-32(%rbp)
+	fstpt	-32(%rbp)			# -32 = long double result
 	addl	$1, -36(%rbp)
 .L17:
 	cmpl	$1999999, -36(%rbp)
 	jle	.L18
 	call	clock@PLT
-	movq	%rax, -136(%rbp)
+	movq	%rax, -136(%rbp)		# end
 	pushq	-24(%rbp)
 	pushq	-32(%rbp)
 	leaq	.LC7(%rip), %rax
@@ -280,7 +280,7 @@ main:
 	jmp	.L25
 .L16:
 	movsd	.LC15(%rip), %xmm0
-	movsd	%xmm0, -88(%rbp)
+	movsd	%xmm0, -88(%rbp)		# double pi
 	movq	-208(%rbp), %rax
 	addq	$8, %rax
 	movq	(%rax), %rax
@@ -289,7 +289,7 @@ main:
 	movq	%rax, %rdi
 	call	strtod@PLT
 	movq	%xmm0, %rax
-	movq	%rax, -96(%rbp)
+	movq	%rax, -96(%rbp)			# double x
 	pxor	%xmm0, %xmm0
 	ucomisd	-96(%rbp), %xmm0
 	jp	.L20
@@ -328,7 +328,7 @@ main:
 	movq	-96(%rbp), %rax
 	movq	%rax, %xmm0
 	call	th@PLT
-	fstpt	-112(%rbp)
+	fstpt	-112(%rbp)			# long double result
 	pushq	-104(%rbp)
 	pushq	-112(%rbp)
 	leaq	.LC7(%rip), %rax
@@ -373,7 +373,7 @@ main:
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	fopen@PLT
-	movq	%rax, -48(%rbp)
+	movq	%rax, -48(%rbp)			# FILE* input
 	cmpq	$0, -48(%rbp)
 	je	.L26
 	movq	-48(%rbp), %rax
@@ -392,7 +392,7 @@ main:
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	fopen@PLT
-	movq	%rax, -56(%rbp)
+	movq	%rax, -56(%rbp)			# FILE* output
 	cmpq	$0, -56(%rbp)
 	je	.L28
 	movq	-56(%rbp), %rax
@@ -404,7 +404,7 @@ main:
 	movl	$1, %eax
 	jmp	.L25
 .L29:
-	leaq	-184(%rbp), %rdx
+	leaq	-184(%rbp), %rdx		# double x
 	movq	-48(%rbp), %rax
 	leaq	.LC25(%rip), %rcx
 	movq	%rcx, %rsi
@@ -414,7 +414,7 @@ main:
 	movq	-184(%rbp), %rax
 	movq	%rax, %xmm0
 	call	th@PLT
-	fstpt	-80(%rbp)
+	fstpt	-80(%rbp)			# long double result
 	movq	-56(%rbp), %rax
 	pushq	-72(%rbp)
 	pushq	-80(%rbp)
