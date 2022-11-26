@@ -41,16 +41,17 @@ gcc main.o th.o -o program.exe -lm
 ```
 
 ## Отчет на 4 балла:
-1. *Приведено решение на С*
+1. **Приведено решение на С**
 > [main.c](https://github.com/Grisha1232/ABC_HW3/blob/86cfc08b685fa49add60ebd1975f230576fa64a6/C%20code/main.c)  
 > [th.c](https://github.com/Grisha1232/ABC_HW3/blob/caae295565936eb2c74743d31f7d2a08ce08a1e3/C%20code/th.c)  
 > Правила пользование написаны выше
 
-2. *Приведено решение на Assembler* (Не модифицированый без оптимизирующих и отладочных опций) с комментариями
+2. **Приведено решение на Assembler** (Не модифицированый без оптимизирующих и отладочных опций) с комментариями
 > [main.s](https://github.com/Grisha1232/ABC_HW3/blob/56f0d96dcd91911b3734de39fad5c7d67edd0653/Assembler%20non%20mod/main.s)  
 > [th.s](https://github.com/Grisha1232/ABC_HW3/blob/f8ecd827844163b1643ea39685a0a26d042fe528/Assembler%20non%20mod/th.s)  
 
-3. *Приведено решение на Assembler* с комментариями
+3. **Приведено решение на Assembler** с комментариями
 > [main.s](https://github.com/Grisha1232/ABC_HW3/blob/b6841687468d9ed1c980e5bf2c6cd893d1528e95/Assembler/main.s)  
 > [th.s](https://github.com/Grisha1232/ABC_HW3/blob/40e846eea3ba76a8caf9c4f7aabc29b72fd1b3e7/Assembler/th.s)  
 > [Список измененений (модификаций) ассемблерной программы](https://github.com/Grisha1232/ABC_HW3/blob/761feb16b40e764760d4074f58b93bf0900552b2/Assembler/Modifications.md)
+4. **Представлено тестовое покрытие:**
