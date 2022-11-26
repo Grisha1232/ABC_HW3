@@ -78,7 +78,7 @@ checkPrecision:
 	.string	"Testing with x = %f\n"
 	.align 8
 .LC14:
-	.string	"\nThe task is done 2000000 times in %f ms\n"
+	.string	"\nThe task is done 2000000 times in %f sec\n"
 	.align 8
 .LC17:
 	.string	"The value provided was out of range"
@@ -108,7 +108,7 @@ main:
 	subq	$208, %rsp
 	movl	%edi, -196(%rbp)		# argc
 	movq	%rsi, -208(%rbp)		# argv
-	cmpl	$1, -196(%rbp)			
+	cmpl	$1, -196(%rbp)
 	jne	.L11
 	movl	$0, %edi
 	call	time@PLT
@@ -493,7 +493,7 @@ main:
 	.align 8
 .LC13:
 	.long	0
-	.long	1083129856
+	.long	1093567616
 	.align 8
 .LC15:
 	.long	1413551940
