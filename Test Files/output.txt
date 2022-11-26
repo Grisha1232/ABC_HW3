@@ -1,0 +1,27 @@
+result for th(x) = -0.291324
+result for real th(x) = -0.291313
+precision: 0.003909
+
+result for th(x) = -0.197376
+result for real th(x) = -0.197375
+precision: 0.000344
+
+result for th(x) = -0.099667
+result for real th(x) = -0.099668
+precision: 0.001332
+
+result for th(x) = 0.000000
+result for real th(x) = 0.000000
+precision: nan
+
+result for th(x) = 0.099667
+result for real th(x) = 0.099668
+precision: 0.001332
+
+result for th(x) = 0.197376
+result for real th(x) = 0.197375
+precision: 0.000344
+
+result for th(x) = 0.291324
+result for real th(x) = 0.291313
+precision: 0.003909
