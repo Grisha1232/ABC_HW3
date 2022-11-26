@@ -7,13 +7,13 @@ realTh:
 	mov	rbp, rsp			
 	sub	rsp, 16	#,
 	movsd	QWORD PTR -8[rbp], xmm0		# x
-# ./main.c:10:     return tanh(x);
+						# ./main.c:10:     return tanh(x);
 	mov	rax, QWORD PTR -8[rbp]		# x
 	movq	xmm0, rax			
 	call	tanh@PLT			
 	movsd	QWORD PTR -16[rbp], xmm0	
 	fld	QWORD PTR -16[rbp]		
-# ./main.c:11: }
+						# ./main.c:11: }
 	leave	
 	ret	
 	.size	realTh, .-realTh
