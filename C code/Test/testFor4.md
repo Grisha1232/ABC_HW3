@@ -31,3 +31,14 @@ Input:
 
 * Assembler:![image](https://user-images.githubusercontent.com/58052549/204085821-2ebc0fb1-55d2-4890-bc24-bd3bdc3bdee0.png)
 
+
+
+## Test 4
+Input:
+```
+-0.1245
+```
+* C code:![image](https://user-images.githubusercontent.com/58052549/204085864-7fa9347d-e13f-4a98-8e9e-4ddcaefa7684.png)
+
+* Assembler:![image](https://user-images.githubusercontent.com/58052549/204085873-c653d79e-9a30-4cd1-8333-0dbdcf00f7dc.png)
+
