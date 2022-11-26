@@ -38,7 +38,7 @@
 
 2. *Приведено решение на Assembler* (Не модифицированый без оптимизирующих и отладочных опций) с комментариями
 > [main.s](https://github.com/Grisha1232/ABC_HW3/blob/e60f8577cc361e7883b386243ec9a8f17b3afb37/Assembler%20non%20mod/main.s)  
-> [th.s]()  
+> [th.s](https://github.com/Grisha1232/ABC_HW3/blob/f8ecd827844163b1643ea39685a0a26d042fe528/Assembler%20non%20mod/th.s)  
 3. *Приведено решение на Assembler*
 > [main.s]()  
 > [th.s]()  
