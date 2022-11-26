@@ -5,7 +5,7 @@
 	.align 32
 	.type	Ber, @object
 	.size	Ber, 960
-Ber:
+Ber:							# massiv of value Ber
 	.long	0
 	.long	-2147483648
 	.long	16383
@@ -179,7 +179,7 @@ Ber:
 	.align 4
 	.type	sizeBer, @object
 	.size	sizeBer, 4
-sizeBer:
+sizeBer:				# sizeBer
 	.long	41
 	.text
 	.globl	fact
@@ -193,7 +193,7 @@ fact:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	subq	$32, %rsp
-	movq	%rdi, -8(%rbp)
+	movq	%rdi, -8(%rbp)		# unsigned long long n
 	cmpq	$0, -8(%rbp)
 	jne	.L2
 	fld1
@@ -234,7 +234,7 @@ pow2:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
+	movq	%rdi, -8(%rbp)			# unsigned long long n
 	movq	-8(%rbp), %rax
 	movl	$1, %edx
 	movl	%eax, %ecx
@@ -258,8 +258,8 @@ bink:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	subq	$48, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
+	movq	%rdi, -8(%rbp)			# undigned long logn n
+	movq	%rsi, -16(%rbp)			# unsigned long long k
 	movq	-8(%rbp), %rax
 	movq	%rax, %rdi
 	call	fact
@@ -293,7 +293,7 @@ bernolli:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	subq	$64, %rsp
-	movq	%rdi, -40(%rbp)
+	movq	%rdi, -40(%rbp)			# unsigned long long n
 	movl	sizeBer(%rip), %eax
 	cltq
 	cmpq	%rax, -40(%rbp)
@@ -403,7 +403,7 @@ ABS:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	fldt	16(%rbp)
+	fldt	16(%rbp)			# long double x
 	fldz
 	fcomip	%st(1), %st
 	fstp	%st(0)
@@ -431,8 +431,8 @@ th:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	subq	$144, %rsp
-	movsd	%xmm0, -120(%rbp)
-	movl	$0, -4(%rbp)
+	movsd	%xmm0, -120(%rbp)	# double x
+	movl	$0, -4(%rbp)		# int countMemb = 1
 	pxor	%xmm0, %xmm0
 	comisd	-120(%rbp), %xmm0
 	jbe	.L25
@@ -451,28 +451,28 @@ th:
 	movq	%rax, %xmm0
 	call	pow@PLT
 	movsd	%xmm0, -144(%rbp)
-	fldl	-144(%rbp)
+	fldl	-144(%rbp)		# long double powX2
 	fstpt	-96(%rbp)
 	fldl	-120(%rbp)
-	fstpt	-32(%rbp)
-	fldt	-32(%rbp)
-	fstpt	-48(%rbp)
-	movq	$2, -104(%rbp)
+	fstpt	-32(%rbp)		# long double curr
+	fldt	-32(%rbp)	
+	fstpt	-48(%rbp)		# long double result
+	movq	$2, -104(%rbp)		# usigned long long int del = 2
 	movl	-8(%rbp), %eax
 	addl	%eax, %eax
 	cltq
 	movq	%rax, %rdi
 	call	pow2
-	movq	%rax, -56(%rbp)
+	movq	%rax, -56(%rbp)		# usigned long long int p2
 	movl	-8(%rbp), %eax
 	addl	%eax, %eax
 	cltq
 	movq	%rax, %rdi
 	call	bernolli
-	fstpt	-80(%rbp)
+	fstpt	-80(%rbp)		# long double ber
 	jmp	.L27
 .L35:
-	addl	$1, -8(%rbp)
+	addl	$1, -8(%rbp)		
 	fldt	-32(%rbp)
 	fldt	-96(%rbp)
 	fmulp	%st, %st(1)
