@@ -107,7 +107,7 @@ main:
 	mov	eax, 0				
 	call	__isoc99_scanf@PLT		
 						# for (int i = 0; i < n; i++) 
-	mov	DWORD PTR -4[rbp], 0		# int i = 0
+	mov	r12d, 0		# int i = 0
 						
 	jmp	.L12				
 .L13:
@@ -190,11 +190,11 @@ main:
 	call	printf@PLT			
 	add	rsp, 16				
 						
-	add	DWORD PTR -4[rbp], 1		# i++
+	add	r12d, 1		# i++
 .L12:
 						
 	mov	eax, DWORD PTR -164[rbp]	# n
-	cmp	DWORD PTR -4[rbp], eax		# i, n
+	cmp	r12d, eax		# i, n
 	jl	.L13				
 	jmp	.L14				
 .L11:
