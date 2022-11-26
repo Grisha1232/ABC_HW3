@@ -51,5 +51,5 @@ gcc main.o th.o -o program.exe -lm
 > [th.s](https://github.com/Grisha1232/ABC_HW3/blob/f8ecd827844163b1643ea39685a0a26d042fe528/Assembler%20non%20mod/th.s)  
 
 3. *Приведено решение на Assembler* с комментариями
-> [main.s]()  
+> [main.s](https://github.com/Grisha1232/ABC_HW3/blob/b6841687468d9ed1c980e5bf2c6cd893d1528e95/Assembler/main.s)  
 > [th.s]()  
