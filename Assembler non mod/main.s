@@ -375,7 +375,7 @@ main:
 	call	fopen@PLT
 	movq	%rax, -48(%rbp)			# FILE* input
 	cmpq	$0, -48(%rbp)
-	je	.L26
+	jne	.L26
 	movq	-48(%rbp), %rax
 	movq	%rax, %rdi
 	call	fclose@PLT
@@ -394,7 +394,7 @@ main:
 	call	fopen@PLT
 	movq	%rax, -56(%rbp)			# FILE* output
 	cmpq	$0, -56(%rbp)
-	je	.L28
+	jne	.L28
 	movq	-56(%rbp), %rax
 	movq	%rax, %rdi
 	call	fclose@PLT
