@@ -53,4 +53,4 @@ gcc main.o th.o -o program.exe -lm
 3. *Приведено решение на Assembler* с комментариями
 > [main.s](https://github.com/Grisha1232/ABC_HW3/blob/b6841687468d9ed1c980e5bf2c6cd893d1528e95/Assembler/main.s)  
 > [th.s](https://github.com/Grisha1232/ABC_HW3/blob/40e846eea3ba76a8caf9c4f7aabc29b72fd1b3e7/Assembler/th.s)  
-> [Список измененений (модификаций) ассемблерной программы] ()
+> [Список измененений (модификаций) ассемблерной программы]()
