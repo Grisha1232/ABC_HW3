@@ -75,7 +75,7 @@ gcc main.o th.o -o program.exe -lm
 
 ### Итог: 
 * Использованы локальные переменные в файле [main.c](https://github.com/Grisha1232/ABC_HW3/blob/86cfc08b685fa49add60ebd1975f230576fa64a6/C%20code/main.c)  
-* Добавлены комментарии в ассемблерную програму описывающую передачу данных через параметры [modification](https://github.com/Grisha1232/ABC_HW3/tree/main/Assembler), а также в не модифицированную ассумблерную программу [nonMod](https://github.com/Grisha1232/ABC_HW3/tree/main/Assembler%20non%20mod)
+* Добавлены комментарии в ассемблерную програму описывающую передачу данных через параметры [modification](https://github.com/Grisha1232/ABC_HW3/tree/main/Assembler), а также в не модифицированную ассемблерную программу [nonMod](https://github.com/Grisha1232/ABC_HW3/tree/main/Assembler%20non%20mod)
 
 ## Отчет на 6 баллов:
 
@@ -85,12 +85,12 @@ gcc main.o th.o -o program.exe -lm
 
 ### Итог:
 * Использованы регистры для некоторых переменных в assembler
-* Для сравнение размеров программы были взяты файлы [main.o и th.o](https://github.com/Grisha1232/ABC_HW3/tree/main/Assembler) (их размер составил 5.5 Кб и 4.0 Кб соответсвенно), а также [nonModMain.o и nonModTh.o](https://github.com/Grisha1232/ABC_HW3/tree/main/Assembler%20non%20mod) (их размер составил 6.1 Кб и 4.6 Кб соотвественно) {Эти файлы получены командой gcc file.s -c -o file.o -lm} => размер программы уменьшился, но результат остался тот же [тесты](https://github.com/Grisha1232/ABC_HW3/blob/181efaecf1a144ce792b4de501f078299d601f3c/C%20code/Test/testFor4.md), которые использовались для проверки идентичности
+* Для сравнение размеров программы были взяты файлы [main.o и th.o](https://github.com/Grisha1232/ABC_HW3/tree/main/Assembler) (их размер составил 5.5 Кб и 4.0 Кб соответсвенно), а также [nonModMain.o и nonModTh.o](https://github.com/Grisha1232/ABC_HW3/tree/main/Assembler%20non%20mod) (их размер составил 6.1 Кб и 4.6 Кб соотвественно)   {Эти файлы получены командой gcc file.s -c -o file.o -lm} => размер программы уменьшился, но результат остался тот же [тесты](https://github.com/Grisha1232/ABC_HW3/blob/181efaecf1a144ce792b4de501f078299d601f3c/C%20code/Test/testFor4.md), которые использовались для проверки идентичности
 
 ## Отчет на 7 баллов:
 
 **1. Реализована программа с двумя еденицами компиляции:**
-* Функции: th(double x); fact(unsigned long long n); pow2(unsigned long long int n); bink(unsigned long long n, usigned long long k); bernolli(unsigned long long n); ABS(long double x) вынесена в отдельный файл th.c
+* Функции:   th(double x);   fact(unsigned long long n);   pow2(unsigned long long int n);   bink(unsigned long long n, usigned long long k);   bernolli(unsigned long long n);   ABS(long double x)   вынесена в отдельный файл th.c
 * Добавлена одна еденица компиляции к уже имеющейся:
 ```
 gcc main.s -c -o main.o
