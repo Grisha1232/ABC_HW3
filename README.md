@@ -91,15 +91,14 @@ gcc main.o th.o -o program.exe -lm
 
 **1. Реализована программа с двумя еденицами компиляции:**
 
-Функции:   
+Функции вынесены в отдельный файл th.c:   
 * th(double x);   
 * fact(unsigned long long n);   
 * pow2(unsigned long long int n);   
 * bink(unsigned long long n, usigned long long k);   
 * bernolli(unsigned long long n);   ABS(long double x)   
-вынесены в отдельный файл th.c
 
-
+> 
 * Добавлена одна еденица компиляции к уже имеющейся:
 ```
 gcc main.s -c -o main.o
