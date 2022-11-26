@@ -449,7 +449,7 @@ th:
 	fstp	QWORD PTR -120[rbp]		# x = ABS(x);
 .L25:
 						# int countMemb = 1;
-	mov	DWORD PTR -8[rbp], 1		# 
+	mov	r13d, 1		# 
 	
 						# long double powX2 = pow(x, 2);
 	movsd	xmm0, QWORD PTR .LC7[rip]	# 
@@ -472,7 +472,7 @@ th:
 	mov	QWORD PTR -104[rbp], 2		# del
 	
 						
-	mov	eax, DWORD PTR -8[rbp]		# countMemb
+	mov	eax, r13d		# countMemb
 	add	eax, eax			
 						
 	cdqe
@@ -480,7 +480,7 @@ th:
 	call	pow2				
 	mov	QWORD PTR -56[rbp], rax		# unsigned long long int p2
 						
-	mov	eax, DWORD PTR -8[rbp]		# countMemb
+	mov	eax, r13d		# countMemb
 	add	eax, eax			
 						
 	cdqe
@@ -491,19 +491,19 @@ th:
 	jmp	.L27				
 .L35:
 						
-	add	DWORD PTR -8[rbp], 1		# countMemb++
+	add	r13d, 1		# countMemb++
 						# curr *= powX2;
 	fld	TBYTE PTR -32[rbp]		# curr
 	fld	TBYTE PTR -96[rbp]		# powX2
 	fmulp	st(1), st			
 	fstp	TBYTE PTR -32[rbp]		# curr
 						#
-	mov	eax, DWORD PTR -8[rbp]		# countMemb
+	mov	eax, r13d		# countMemb
 	add	eax, eax			# 
 						# 
 	sub	eax, 1				# 
 						# 
-	imul	eax, DWORD PTR -8[rbp]		# countMemb
+	imul	eax, r13d		# countMemb
 	add	eax, eax			# 
 						# 
 	cdqe
@@ -562,7 +562,7 @@ th:
 	fdivp	st(1), st			#
 	fstp	TBYTE PTR -32[rbp]		# curr
 						# ber = bernolli(2 * countMemb);
-	mov	eax, DWORD PTR -8[rbp]		# countMemb
+	mov	eax, r13d		# countMemb
 	add	eax, eax			# 
 						# ber = bernolli(2 * countMemb);
 	cdqe
@@ -577,7 +577,7 @@ th:
 	fstp	TBYTE PTR -32[rbp]		# curr
 	
 						# if (countMemb % 2 == 0) 
-	mov	eax, DWORD PTR -8[rbp]		# countMemb
+	mov	eax, r13d		# countMemb
 	and	eax, 1				# 
 						# 
 	test	eax, eax			#
