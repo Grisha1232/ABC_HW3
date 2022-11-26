@@ -1,28 +1,26 @@
 	.intel_syntax noprefix
-	.text
 	.globl	realTh
 	.type	realTh, @function
 realTh:
-	push	rbp				
-	mov	rbp, rsp			
+	push	rbp				#
+	mov	rbp, rsp			#,
 	sub	rsp, 16	#,
-	movsd	QWORD PTR -8[rbp], xmm0		# x
+	movsd	QWORD PTR -8[rbp], xmm0		# x, x
 						# ./main.c:10:     return tanh(x);
-	mov	rax, QWORD PTR -8[rbp]		# x
-	movq	xmm0, rax			
-	call	tanh@PLT			
-	movsd	QWORD PTR -16[rbp], xmm0	
-	fld	QWORD PTR -16[rbp]		
-						# ./main.c:11: }
+	mov	rax, QWORD PTR -8[rbp]		# tmp85, x
+	movq	xmm0, rax			#, tmp85
+	call	tanh@PLT			#
+	movsd	QWORD PTR -16[rbp], xmm0	# %sfp,
+	fld	QWORD PTR -16[rbp]		# %sfp
 	leave	
 	ret	
 	.size	realTh, .-realTh
 	.globl	checkPrecision
 	.type	checkPrecision, @function
 checkPrecision:
-	push	rbp				
-	mov	rbp, rsp			
-						# long double result = (100 - (curr * 100 / x));
+	push	rbp				#
+	mov	rbp, rsp			#,
+						# ./main.c:14:     long double result = (100 - (curr * 100 / x));
 	fld	TBYTE PTR 32[rbp]		# curr
 	fld	TBYTE PTR .LC1[rip]		#
 	fmulp	st(1), st			#,
@@ -47,7 +45,8 @@ checkPrecision:
 	fld	TBYTE PTR -16[rbp]		# result
 	fchs	
 .L7:
-	pop	rbp
+						# ./main.c:16: }
+	pop	rbp				#
 	ret	
 	.size	checkPrecision, .-checkPrecision
 	.section	.rodata
@@ -70,7 +69,7 @@ checkPrecision:
 	.string	"Testing with x = %f\n"
 	.align 8
 .LC14:
-	.string	"\nThe task is done 2000000 times in %f ms\n"
+	.string	"\nThe task is done 2000000 times in %f sec\n"
 	.align 8
 .LC17:
 	.string	"The value provided was out of range"
@@ -90,20 +89,20 @@ checkPrecision:
 	.globl	main
 	.type	main, @function
 main:
-	push	rbp				
-	mov	rbp, rsp			
-	sub	rsp, 208			
+	push	rbp				#
+	mov	rbp, rsp			#,
+	sub	rsp, 208			#,
 	mov	DWORD PTR -196[rbp], edi	# argc, argc
 	mov	QWORD PTR -208[rbp], rsi	# argv, argv
 						# ./main.c:21:     if (argc == 1) {
 	cmp	DWORD PTR -196[rbp], 1		# argc,
-	jne	.L11	
+	jne	.L11				#,
 						# ./main.c:25:         srand(time(NULL));
-	mov	edi, 0	
-	call	time@PLT	
+	mov	edi, 0				#,
+	call	time@PLT			#
 						# ./main.c:25:         srand(time(NULL));
-	mov	edi, eax	
-	call	srand@PLT	
+	mov	edi, eax			#, _2
+	call	srand@PLT			#
 						# ./main.c:26:         printf("How many of random values do you wanna get: ");
 	lea	rax, .LC3[rip]			# tmp124,
 	mov	rdi, rax			#, tmp124
@@ -119,10 +118,10 @@ main:
 						# ./main.c:28:         for (int i = 0; i < n; i++) {
 	mov	DWORD PTR -4[rbp], 0		# i,
 						# ./main.c:28:         for (int i = 0; i < n; i++) {
-	jmp	.L12	
+	jmp	.L12				#
 .L13:
 						# ./main.c:29:             double x = rand() % 2;
-	call	rand@PLT	
+	call	rand@PLT			#
 						# ./main.c:29:             double x = rand() % 2;
 	cdq
 	shr	edx, 31				# tmp128,
@@ -134,14 +133,14 @@ main:
 	cvtsi2sd	xmm0, eax		# tmp132, _4
 	movsd	QWORD PTR -144[rbp], xmm0	# x, tmp132
 						# ./main.c:30:             x += (rand() % 5707) / 10000.;
-	call	rand@PLT			
+	call	rand@PLT			#
 						# ./main.c:30:             x += (rand() % 5707) / 10000.;
 	movsx	rdx, eax			# tmp133, _5
 	imul	rdx, rdx, 1541281413		# tmp134, tmp133,
-	shr	rdx, 32	# tmp135,
-	sar	edx, 11	# tmp136,
+	shr	rdx, 32				# tmp135,
+	sar	edx, 11				# tmp136,
 	mov	ecx, eax			# tmp137, _5
-	sar	ecx, 31	# tmp137,
+	sar	ecx, 31				# tmp137,
 	sub	edx, ecx			# _6, tmp137
 	imul	ecx, edx, 5707			# tmp138, _6,
 	sub	eax, ecx			# _5, tmp138
@@ -160,22 +159,22 @@ main:
 	movq	xmm0, rax			#, tmp142
 	lea	rax, .LC6[rip]			# tmp143,
 	mov	rdi, rax			#, tmp143
-	mov	eax, 1	
-	call	printf@PLT	
-						# ./main.c:32:             long double result = th(x);
+	mov	eax, 1				#,
+	call	printf@PLT			#
+						# ./main.c:32:    long double result = th(x);
 	mov	rax, QWORD PTR -144[rbp]	# tmp144, x
 	movq	xmm0, rax			#, tmp144
 	call	th@PLT				#
 	fstp	TBYTE PTR -160[rbp]		# result
-						# ./main.c:33:             printf("result for th(x) = %Lf\n", result);
+						# ./main.c:33:     printf("result for th(x) = %Lf\n", result);
 	push	QWORD PTR -152[rbp]		# result
 	push	QWORD PTR -160[rbp]		# result
 	lea	rax, .LC7[rip]			# tmp146,
 	mov	rdi, rax			#, tmp146
-	mov	eax, 0	
-	call	printf@PLT	
-	add	rsp, 16	
-						# ./main.c:34:             printf("result for real th(x) = %Lf\n", realTh(x));
+	mov	eax, 0				#,
+	call	printf@PLT			#
+	add	rsp, 16				#,
+						# ./main.c:34:   printf("result for real th(x) = %Lf\n", realTh(x));
 	mov	rax, QWORD PTR -144[rbp]	# tmp147, x
 	movq	xmm0, rax			#, tmp147
 	call	realTh				#
@@ -186,7 +185,7 @@ main:
 	mov	eax, 0				#,
 	call	printf@PLT			#
 	add	rsp, 16				#,
-						# ./main.c:35:             printf("precision: %Lf\n\n", checkPrecision(realTh(x), result));
+						# ./main.c:35:  printf("precision: %Lf\n\n", checkPrecision(realTh(x), result));
 	mov	rax, QWORD PTR -144[rbp]	# tmp149, x
 	movq	xmm0, rax			#, tmp149
 	call	realTh				#
@@ -257,7 +256,7 @@ main:
 	cmp	DWORD PTR -36[rbp], 1999999	# i,
 	jle	.L18				#,
 						# ./main.c:46:             time_t t_end = clock();
-	call	clock@PLT			#
+	call	clock@PLT	#
 	mov	QWORD PTR -136[rbp], rax	# t_end, tmp159
 						# ./main.c:47:             printf("result for th(x) = %Lf\n", result);
 	push	QWORD PTR -24[rbp]		# result
@@ -283,15 +282,15 @@ main:
 	mov	rdi, rax			#, tmp162
 	mov	eax, 0				#,
 	call	printf@PLT			#
-	add	rsp, 16	#,
-						# ./main.c:49:             printf("\nThe task is done 2000000 times in %f ms\n", (difftime(t_end, t_start)) / 1000);
+	add	rsp, 16				#,
+						# printf("\nThe task is done 2000000 times in %f sec\n", (difftime(t_end, t_start)) / 1000000);
 	mov	rdx, QWORD PTR -128[rbp]	# tmp163, t_start
 	mov	rax, QWORD PTR -136[rbp]	# tmp164, t_end
 	mov	rsi, rdx			#, tmp163
 	mov	rdi, rax			#, tmp164
 	call	difftime@PLT			#
 	movq	rax, xmm0			# _17,
-						# ./main.c:49:             printf("\nThe task is done 2000000 times in %f ms\n", (difftime(t_end, t_start)) / 1000);
+						# printf("\nThe task is done 2000000 times in %f sec\n", (difftime(t_end, t_start)) / 1000000);
 	movsd	xmm0, QWORD PTR .LC13[rip]	# tmp165,
 	movq	xmm3, rax			# _17, _17
 	divsd	xmm3, xmm0			# _17, tmp165
@@ -330,7 +329,7 @@ main:
 	call	__errno_location@PLT		#
 	mov	eax, DWORD PTR [rax]		# _22, *_21
 						# ./main.c:61:             if (errno == ERANGE)
-	cmp	eax, 34	# _22,
+	cmp	eax, 34				# _22,
 	jne	.L20				#,
 						# ./main.c:62:                 printf("The value provided was out of range\n");
 	lea	rax, .LC17[rip]			# tmp173,
@@ -423,7 +422,7 @@ main:
 	mov	QWORD PTR -48[rbp], rax		# input, tmp190
 						# ./main.c:75:         if ((input = fopen(argv[1], "r"))!= NULL) {
 	cmp	QWORD PTR -48[rbp], 0		# input,
-	je	.L26	#,
+	je	.L26				#,
 						# ./main.c:76:             fclose(input);
 	mov	rax, QWORD PTR -48[rbp]		# tmp191, input
 	mov	rdi, rax			#, tmp191
@@ -438,7 +437,7 @@ main:
 .L26:
 						# ./main.c:81:         if ((output = fopen(argv[2], "w")) != NULL) {
 	mov	rax, QWORD PTR -208[rbp]	# tmp193, argv
-	add	rax, 16	# _31,
+	add	rax, 16				# _31,
 						# ./main.c:81:         if ((output = fopen(argv[2], "w")) != NULL) {
 	mov	rax, QWORD PTR [rax]		# _32, *_31
 	lea	rdx, .LC23[rip]			# tmp194,
@@ -483,7 +482,7 @@ main:
 	mov	rdi, rax			#, tmp202
 	mov	eax, 0				#,
 	call	fprintf@PLT			#
-	add	rsp, 16	#,
+	add	rsp, 16				#,
 						# ./main.c:91:             fprintf(output, "result for real th(x) = %Lf\n", realTh(x));
 	mov	rax, QWORD PTR -184[rbp]	# x.3_34, x
 	movq	xmm0, rax			#, x.3_34
@@ -520,7 +519,7 @@ main:
 						# ./main.c:86:         while (!feof(input)) {
 	mov	rax, QWORD PTR -48[rbp]		# tmp208, input
 	mov	rdi, rax			#, tmp208
-	call	feof@PLT			#
+	call	feof@PLT			
 						# ./main.c:86:         while (!feof(input)) {
 	test	eax, eax			# _39
 	je	.L29				#,
@@ -534,7 +533,7 @@ main:
 	call	fclose@PLT			#
 .L14:
 						# ./main.c:97:     return 0;
-	mov	eax, 0	# _43,
+	mov	eax, 0				# _43,
 .L25:
 						# ./main.c:98: }
 	leave	
@@ -558,7 +557,7 @@ main:
 	.align 8
 .LC13:
 	.long	0
-	.long	1083129856
+	.long	1093567616
 	.align 8
 .LC15:
 	.long	1413551940
@@ -573,3 +572,5 @@ main:
 .LC19:
 	.long	0
 	.long	1073741824
+	.ident	"GCC: (Debian 11.3.0-5) 11.3.0"
+	.section	.note.GNU-stack,"",@progbits
